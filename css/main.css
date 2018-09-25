@@ -26,6 +26,8 @@ body {
     margin: 0 auto;
 }
 
+/* Style the nav bar header, brand and social bars */
+
 .header {
     min-height: 100vh;
     background-image: url(../images/concierto.jpg);
@@ -34,9 +36,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
-header nav {
+.header{
+    width: 100%;
+}
+.header > * {
+    position: relative;
+    z-index: 1;
+}
+.header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 0;
+}
+.header nav {
     align-self: flex-start;
     width: 100%;
     margin-bottom: 60px;
@@ -102,13 +123,21 @@ header nav {
     display: none;
 }
 
-header h1 {
+.header h1 {
     font-family: 'Monoton', cursive;
     font-size: 5em;
     letter-spacing: 2px;
     color: white;
     text-shadow: 0 0 3px orange;
     font-weight: 400;
+}
+
+.slogan {
+    color: white;
+    text-shadow: 0 0 3px orange;
+    width: 100%;
+    text-align: center;
+
 }
 
 .header-socials {
@@ -154,4 +183,71 @@ header h1 {
     header h1 {
         font-size: 4em;
     }
+}
+
+/*Styling section feutures*/ 
+
+.feutures {
+    display: grid;
+    padding: 0.5em;
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: .33%;
+    grid-row-gap: 1em;
+}
+
+.feuture article {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 1px solid #dbdada;
+    box-shadow: 2px 3px 6px #dbdada;
+    
+}
+
+.feuture article img {
+    width: 100%;
+    height: 250px;
+    max-height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.feuture article h2{
+    padding: 0.5em;
+    color: #612e1d;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.feuture article p {
+    padding: 0.8em 0.2em 0.8em 0.8em;
+}
+
+.feuture article a {
+    width: 90%;
+    margin: 1em auto;
+    text-decoration: none;
+    color: var(--main-bg-color);
+    font-weight: 400;
+    display: block;
+    text-align: center;
+    padding: 1em;
+    background-color: orange;
+    border-radius: 0.2em;
+}
+
+.feuture article a:hover {
+    background-color: var(--main-bg-color);
+    color: orange;
+}
+
+@media only screen and (max-width: 760px){
+
+    .feutures {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 1.5em;
+    }
+
 }
