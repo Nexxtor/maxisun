@@ -1,25 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Monoton|Raleway:400,700');
 
 :root {
+    /* To get a responsive base font size  */
     font-size: calc(0.5em + 1vw);
+    /* To have a predictable width and height */
     box-sizing: border-box;
+    /* Define variables for the base colors */
     --main-bg-color: #f5f5f5;
     --nav-color: black;
+    /* Define a font family for the document */
     font-family: 'Raleway', sans-serif;
 }
 
-*, ::before, ::after {
+/* Inherit the box-sizing property. Also delete padding and margin properties for all elements*/
+*,
+::before,
+::after {
     box-sizing: inherit;
     padding: 0;
     margin: 0;
 }
 
 body {
+    /* Using the variable defined previously */
     background-color: var(--main-bg-color);
-    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 .content {
@@ -27,27 +33,34 @@ body {
     margin: 0 auto;
 }
 
-/* Style the nav bar header, brand and social bars */
+/* Style the navbar header, brand and slogan */
 
 .header {
+    /* To make the element take up full height of all screen sizes, but it can be bigger if needed */
     min-height: 100vh;
+    width: 100%;
     background-image: url(../images/concierto.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 }
 
-.header{
-    width: 100%;
-}
+/****************Reminder*******************************
+    When an element's position property has been set to a value 
+    other than static, such as relative or absolute, 
+    then the property 'z-index' can be used to display the content in layers or levels. 
+    The values of z-index can be numbers its default value is 'auto'. 
+    auto z-index value makes an element appear on the base level.
+    All levels or layers are stacked on top of each other.
+    The higher the value, the higher the element will appear on the stack of elements.
+    
+    This means an element that has the z-index set to one will appear on top
+    of any element with a z-index value less than 1 
 
-.header > * {
-    position: relative;
-    z-index: 1;
-}
+********************************************************/
+/* To add a semi-transparent overlay as the header's background  */
 .header::after {
     content: "";
     display: block;
@@ -57,11 +70,18 @@ body {
     left: 0;
     right: 0;
     background-color: black;
-    z-index: 0;
+    z-index: 0; 
     opacity: 0.5;
 }
 
+/* To make the header's children appear on top of the overlay added above */
+.header>* {
+    position: relative;
+    z-index: 1;
+}
+
 .header nav {
+    /* Whit this the nav appear on start of header*/
     align-self: flex-start;
     width: 100%;
     margin-bottom: 60px;
@@ -73,12 +93,11 @@ body {
     background-color: var(--nav-color);
     align-items: center;
     justify-content: space-around;
-    
 }
 
 .menu {
     position: relative;
-    height: 56px;
+    height: 56px; /* This important because is needed for de logo overflow*/
 }
 
 .menu .logo {
@@ -92,7 +111,7 @@ body {
     width: 100px;
 }
 
-.menu .logo img{
+.menu .logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -117,12 +136,13 @@ body {
     background-color: white;
     height: 1px;
     width: 140%;
-    transform: translate(-10%,0%);
+    transform: translate(-10%, 0%);
     margin-left: auto;
     margin-right: auto;
     margin-top: 1px;
     display: block;
 }
+
 .menu li.logo:hover::after {
     display: none;
 }
@@ -148,6 +168,7 @@ body {
     width: 50%;
     margin: 0 auto;
 }
+
 .header-socials ul a {
     color: inherit;
 }
@@ -167,11 +188,11 @@ body {
     margin-bottom: auto;
 }
 
-.header .arrow-down:hover{
+.header .arrow-down:hover {
     color: blue;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
     .menu .logo {
         display: none;
     }
@@ -180,6 +201,7 @@ body {
         flex-direction: column;
         height: auto;
     }
+
     .menu li {
         padding: 1em;
     }
@@ -188,12 +210,12 @@ body {
         font-size: 4em;
     }
 
-    .header .menu a{
+    .header .menu a {
         font-size: 1em;
     }
 }
 
-/*Styling section feutures*/ 
+/*Styling section feutures*/
 
 .feutures {
     display: grid;
@@ -211,7 +233,7 @@ body {
     overflow: hidden;
     border: 1px solid #dbdada;
     box-shadow: 2px 3px 6px #dbdada;
-    
+
 }
 
 .feuture article img {
@@ -222,7 +244,7 @@ body {
     object-position: center;
 }
 
-.feuture article h2{
+.feuture article h2 {
     padding: 0.5em;
     color: #612e1d;
     text-transform: capitalize;
@@ -253,7 +275,7 @@ body {
     color: orange;
 }
 
-@media only screen and (max-width: 760px){
+@media only screen and (max-width: 760px) {
 
     .feutures {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -273,8 +295,9 @@ body {
     padding: 1em;
 }
 
-.contact-text,.contact-form {
-    flex:1;
+.contact-text,
+.contact-form {
+    flex: 1;
     padding: 2em;
 }
 
@@ -282,27 +305,29 @@ body {
     line-height: 1.5em;
     background: #13131342;
     border-radius: 1em;
-    
+
 }
 
-.contact-text h2{ 
+.contact-text h2 {
     text-transform: capitalize;
     margin-bottom: 1em;
 }
 
-.contact-form input,.contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     display: block;
     width: 100%;
     min-height: 40px;
 }
 
-.contact-form label{
+.contact-form label {
     display: block;
     width: 100%;
     text-transform: capitalize;
 }
 
-.contact-form label + input, .contact-form label + textarea{
+.contact-form label+input,
+.contact-form label+textarea {
     margin-top: 5px;
     padding: 0.5em 1em;
     border-radius: 0.5em;
@@ -310,7 +335,7 @@ body {
     box-shadow: 0 0 4px #440d5a;
 }
 
-.contact-form input + label {
+.contact-form input+label {
     margin-top: 10px;
 }
 
@@ -319,16 +344,17 @@ body {
     color: #fef6f4;
 }
 
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1024px) {
 
-    .contact { 
-      flex-direction: column;
-      justify-content: flex-start;
-      min-height: 40%;
+    .contact {
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: 40%;
     }
-    
 
-    .contact-text,.contact-form {
+
+    .contact-text,
+    .contact-form {
         padding-bottom: 0.5em;
         padding-top: 0.5em;
     }
@@ -350,7 +376,8 @@ footer {
     grid-template-rows: 1fr 30px;
 }
 
-footer .socials , footer .more {
+footer .socials,
+footer .more {
     padding: 1em;
 }
 
@@ -360,7 +387,8 @@ footer ul {
     margin-top: 1em;
 }
 
-footer ul li , footer h3 {
+footer ul li,
+footer h3 {
     color: #dbdada;
 }
 
@@ -368,17 +396,17 @@ footer ul li a {
     color: inherit;
     font-size: 0.8em;
     text-decoration: none;
-    
+
 }
 
 footer .copy {
     text-align: center;
     font-size: 0.7em;
     grid-column: span 3;
-    color: rgba(109, 104, 104, 0.801);    
+    color: rgba(109, 104, 104, 0.801);
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
     footer {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 30px;
